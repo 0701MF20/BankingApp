@@ -13,7 +13,8 @@ public class BankDbHelper extends SQLiteOpenHelper {
             BankContract.BankEntry.COLUMN_ACCOUNT_NUMBER + " INTEGER NOT NULL DEFAULT 0 , "+
             BankContract.BankEntry.COLUMN_IFSC_NUMBER + " INTEGER NOT NULL DEFAULT 0 , "+
             BankContract.BankEntry.COLUMN_BANK_PEOPLE_EMAIL + " TEXT NOT NULL, " +
-            BankContract.BankEntry.COLUMN_BANK_PEOPLE_MOBILE_NUMBER + " INTEGER NOT NULL , " +
+            BankContract.BankEntry.COLUMN_BANK_PEOPLE_MOBILE_NUMBER + " TEXT NOT NULL, " +
+       //     BankContract.BankEntry.COLUMN_BANK_PEOPLE_MOBILE_NUMBER + " INTEGER NOT NULL , " +
             BankContract.BankEntry.COLUMN_TOTAL_BALANCE + " INTEGER NOT NULL DEFAULT 0 );";
 
     //Record table for transfer

@@ -170,7 +170,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         int AccountNo = Integer.parseInt(mAccountEditText.getText().toString().trim());
        int IFSCNo = Integer.parseInt(mIFSCEditText.getText().toString().trim());
        String emailId=mEmailEditText.getText().toString().trim();
-       int mobile=Integer.parseInt(mMobileEditText.getText().toString().trim());
+       String mobile=mMobileEditText.getText().toString().trim();
        int customerbalance=Integer.parseInt(mCustomerEditText.getText().toString().trim());
         //int weights=0;
         //If empty then i means it will save 0 in database by default
@@ -424,7 +424,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             int ifscCode = cursor.getInt(ifscIndex);
             int accountCode = cursor.getInt(accountIndex);
             String email=cursor.getString(emailIndex);
-            int mobile=cursor.getInt(mobileindex);
+            String mobile=cursor.getString(mobileindex);
             int balance=cursor.getInt(balanceIndex);
 
             //necessary to use ""+name pet because otherwise it would invoke error because sometime we are actually provingint wvalue and int value need to be converted to string by using string concatenation

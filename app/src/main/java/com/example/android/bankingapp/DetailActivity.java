@@ -233,7 +233,7 @@ transferButton=findViewById(R.id.transferbutton2);
             ifscTextView.setContentDescription(IfscCode + "");
             /*****************Mobile *****************/
             int mobileIndex = data.getColumnIndex(BankContract.BankEntry.COLUMN_BANK_PEOPLE_MOBILE_NUMBER);
-            int mobileno = data.getInt(mobileIndex);
+            String mobileno = data.getString(mobileIndex);
             mobileNoTextView.setText(mobileno + "");
             mobileNoTextView.setContentDescription(mobileno + "");
             /*****************Email Id *****************/

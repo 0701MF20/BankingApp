@@ -1,5 +1,6 @@
 package com.example.android.bankingapp;
 
+import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -20,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
-import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +33,7 @@ import java.net.URI;
 
 import static com.example.android.bankingapp.data.BankContract.BankEntry.CONTENT_URI;
 
-public class AllUserActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,BankAdapter.BankAdapterOnClickHandler {
+public class AllUserActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, BankAdapter.BankAdapterOnClickHandler, androidx.loader.app.LoaderManager.LoaderCallbacks<> {
    public static int toAccountForTransferTable=0;
            public static  int fromAccountForTransferTable=0;
            public static int transferMoneyFromTransferTable=0;
@@ -98,8 +98,8 @@ public class AllUserActivity extends AppCompatActivity implements LoaderManager.
     bankAdapter=new BankAdapter(this,this);
    recyclerView.setAdapter(bankAdapter);
       //  showLoading();
-
-        LoaderManager.getInstance(this).initLoader(ID_BANK_LOADER,null,this);
+        androidx.loader.app.LoaderManager.getInstance(this).initLoader(ID_BANK_LOADER,null,this);
+//        LoaderManager.getInstance(this).initLoader(ID_BANK_LOADER,null,this);
 //if(intentUri!=null)
 //{
 //    LoaderManager.getInstance(this).initLoader(ID_SELECT_ACCOUNT, null, this);
@@ -108,7 +108,7 @@ public class AllUserActivity extends AppCompatActivity implements LoaderManager.
 
     @NonNull
     @Override
-    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+    public android.content.Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
 /*
         switch (id) {
 
@@ -140,6 +140,21 @@ return new CursorLoader(this,forecastQueryUri,MAIN_FORECAST_PROJECTION,null//Ban
     }
 
     @Override
+    public void onLoadFinished(@NonNull Loader<D> loader, D data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<D> loader) {
+
+    }
+
+    @Override
+    public void onLoadFinished(android.content.Loader<Cursor> loader, Cursor cursor) {
+
+    }
+
+    @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         bankAdapter.swapCursor(data);
         if (mPosition == RecyclerView.NO_POSITION)
@@ -150,7 +165,7 @@ return new CursorLoader(this,forecastQueryUri,MAIN_FORECAST_PROJECTION,null//Ban
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull android.content.Loader<Cursor> loader) {
         bankAdapter.swapCursor(null);
     }
 
@@ -213,7 +228,8 @@ return new CursorLoader(this,forecastQueryUri,MAIN_FORECAST_PROJECTION,null//Ban
             //TODO:mAKE IT MORE FLEXIBLE
             from_account_balance_total=from_account_balance_total-trans_money;
             int from_code_ifsc=bundle.getInt("ifsc_code");
-            int from_nos_contact=bundle.getInt("from_contact_nos");
+            String from_nos_contact=bundle.getString("from_contact_nos");
+     //       int from_nos_contact=bundle.getInt("from_contact_nos");
             String from_id_email=bundle.getString("email_Id_From");
             String from_user_name=bundle.getString("from_name_user");
 fromAccountForTransferTable=from_account;
@@ -270,7 +286,8 @@ fromAccountForTransferTable=from_account;
 
                 String toName=cursor1.getString(nameColIndex);
                 String toEmail=cursor1.getString(emailColIndex);
-                int toMobile=cursor1.getInt(mobileColIndex);
+                String toMobile=cursor1.getString(mobileColIndex);
+             //   int toMobile=cursor1.getInt(mobileColIndex);
                 int toIfsc=cursor1.getInt(ifscColIndex);
                 int toBalance=cursor1.getInt(balColIndex);
                 int toAcc=cursor1.getInt(AcColIndex);
